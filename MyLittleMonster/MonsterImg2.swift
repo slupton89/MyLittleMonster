@@ -1,9 +1,0 @@
-//
-//  MonsterImg2.swift
-//  MyLittleMonster
-//
-//  Created by Shane Lupton on 11/18/15.
-//  Copyright © 2015 Shane Lupton. All rights reserved.
-//
-
-import Foundation

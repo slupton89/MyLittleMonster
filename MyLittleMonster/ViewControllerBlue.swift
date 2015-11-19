@@ -9,16 +9,17 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewControllerBlue: UIViewController {
     
-    @IBOutlet weak var monsterImg: MonsterImg!
-    @IBOutlet weak var foodImg: DragImg!
+  
+    @IBOutlet weak var monsterImgBlue: MonsterImgBlue!
     @IBOutlet weak var heartImg: DragImg!
     @IBOutlet weak var fruitImg: DragImg!
+    @IBOutlet weak var foodImg: DragImg!
     @IBOutlet weak var penalty1Img: UIImageView!
     @IBOutlet weak var penalty2Img: UIImageView!
     @IBOutlet weak var penalty3Img: UIImageView!
-    @IBOutlet weak var restartBtn: UIButton!
+    @IBOutlet weak var restartImg: UIButton!
     
     
     let DIM_ALPHA: CGFloat = 0.2
@@ -35,15 +36,15 @@ class ViewController: UIViewController {
     var sfxHeart: AVAudioPlayer!
     var sfxDeath: AVAudioPlayer!
     var sfxSkull: AVAudioPlayer!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        restartBtn.hidden = true
+       restartImg.hidden = true
         
-        foodImg.dropTarget = monsterImg
-        heartImg.dropTarget = monsterImg
-        fruitImg.dropTarget = monsterImg
+        foodImg.dropTarget = monsterImgBlue
+        heartImg.dropTarget = monsterImgBlue
+        fruitImg.dropTarget = monsterImgBlue
         
         penalty1Img.alpha = DIM_ALPHA
         penalty2Img.alpha = DIM_ALPHA
@@ -52,31 +53,31 @@ class ViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "itemDroppedOnCharacter:", name: "onTargetDropped", object: nil)
         
         do {
-        try musicPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cave-music", ofType: "mp3")!))
-        
-        try sfxBite = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bite", ofType: "wav")!))
-        
-        try sfxHeart = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("heart", ofType: "wav")!))
-        
-        try sfxDeath = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("death", ofType: "wav")!))
-        
-        try sfxSkull = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("skull", ofType: "wav")!))
-        
-        musicPlayer.prepareToPlay()
-        musicPlayer.play()
-        musicPlayer.volume = 0.5
-        
-        sfxBite.prepareToPlay()
-        sfxHeart.prepareToPlay()
-        sfxDeath.prepareToPlay()
-        sfxSkull.prepareToPlay()
-        
+            try musicPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cave-music", ofType: "mp3")!))
+            
+            try sfxBite = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bite", ofType: "wav")!))
+            
+            try sfxHeart = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("heart", ofType: "wav")!))
+            
+            try sfxDeath = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("death", ofType: "wav")!))
+            
+            try sfxSkull = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("skull", ofType: "wav")!))
+            
+            musicPlayer.prepareToPlay()
+            musicPlayer.play()
+            musicPlayer.volume = 0.5
+            
+            sfxBite.prepareToPlay()
+            sfxHeart.prepareToPlay()
+            sfxDeath.prepareToPlay()
+            sfxSkull.prepareToPlay()
+            
         } catch let err as NSError {
             print(err.debugDescription)
         }
         
         startTimer()
-
+        
     }
     
     func itemDroppedOnCharacter(notif: AnyObject) {
@@ -92,7 +93,7 @@ class ViewController: UIViewController {
         
         if currentItem == 0 {
             sfxHeart.play()
-        } else if currentItem == 1 {
+        } else if currentItem == 1{
             sfxBite.play()
         } else {
             sfxBite.play()
@@ -171,20 +172,19 @@ class ViewController: UIViewController {
     
     func gameOver() {
         timer.invalidate()
-        monsterImg.playDeathAnimation()
+        monsterImgBlue.playDeathAnimation()
         sfxDeath.play()
         
         foodImg.hidden = true
         heartImg.hidden = true
-        fruitImg.hidden = true
-        restartBtn.hidden = false
+        restartImg.hidden = false
         
     }
     @IBAction func restartGame(sender: AnyObject) {
         viewDidLoad()
         monsterHappy = true
         penalties = 0
-        monsterImg.playIdleAnimation()
+        monsterImgBlue.playIdleAnimation()
         foodImg.hidden = false
         heartImg.hidden = false
     }
@@ -197,7 +197,7 @@ class ViewController: UIViewController {
 //        print("I just touched the screen")
 //    }
 
-    
+
 
 
 
