@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var penalty1Img: UIImageView!
     @IBOutlet weak var penalty2Img: UIImageView!
     @IBOutlet weak var penalty3Img: UIImageView!
+    @IBOutlet weak var restartBtn: UIButton!
+    
     
     let DIM_ALPHA: CGFloat = 0.2
     let OPAQUE: CGFloat = 1.0
@@ -35,6 +37,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        restartBtn.hidden = true
         
         foodImg.dropTarget = monsterImg
         heartImg.dropTarget = monsterImg
@@ -58,7 +62,7 @@ class ViewController: UIViewController {
         
         musicPlayer.prepareToPlay()
         musicPlayer.play()
-        musicPlayer.volume = .5
+        musicPlayer.volume = 0.5
         
         sfxBite.prepareToPlay()
         sfxHeart.prepareToPlay()
@@ -148,6 +152,19 @@ class ViewController: UIViewController {
         timer.invalidate()
         monsterImg.playDeathAnimation()
         sfxDeath.play()
+        
+        foodImg.hidden = true
+        heartImg.hidden = true
+        restartBtn.hidden = false
+        
+    }
+    @IBAction func restartGame(sender: AnyObject) {
+        viewDidLoad()
+        monsterHappy = true
+        penalties = 0
+        monsterImg.playIdleAnimation()
+        foodImg.hidden = false
+        heartImg.hidden = false
     }
     
     
