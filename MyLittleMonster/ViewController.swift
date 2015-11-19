@@ -181,12 +181,13 @@ class ViewController: UIViewController {
         
     }
     @IBAction func restartGame(sender: AnyObject) {
-        viewDidLoad()
-        monsterHappy = true
-        penalties = 0
-        monsterImg.playIdleAnimation()
-        foodImg.hidden = false
-        heartImg.hidden = false
+//        viewDidLoad()
+//        monsterHappy = true
+//        penalties = 0
+//        monsterImg.playIdleAnimation()
+//        foodImg.hidden = false
+//        heartImg.hidden = false
+//        fruitImg.hidden = true
     }
     
     
